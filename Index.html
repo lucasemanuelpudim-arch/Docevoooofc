@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#83d5f5">
+  <title>DoceVoo | Doces que fazem voar</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0faff;
+      color: #49372f;
+    }
+
+    header {
+      background: linear-gradient(135deg, #83d5f5, #d9f4ff);
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin: 0;
+      color: #fff;
+      text-shadow: 2px 2px #508eac;
+    }
+
+    header p {
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+
+    nav {
+      background: #fff;
+      padding: 13px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 8px #00000010;
+    }
+
+    nav a {
+      color: #397d9c;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 12px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #397d9c;
+      text-align: center;
+    }
+
+    .intro {
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .produto, .carrinho, .pedido {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 14px #31566b12;
+    }
+
+    .produto {
+      text-align: center;
+    }
+
+    .emoji {
+      font-size: 55px;
+      margin: 8px;
+    }
+
+    .preco {
+      font-size: 24px;
+      font-weight: bold;
+      color: #397d9c;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .adicionar {
+      background: #83d5f5;
+      color: #173e50;
+      width: 100%;
+    }
+
+    .quantidade {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 12px;
+    }
+
+    .quantidade button {
+      background: #e3f6ff;
+      color: #276b89;
+      min-width: 42px;
+    }
+
+    .linha-carrinho {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e7edf0;
+    }
+
+    .total {
+      font-size: 25px;
+      font-weight: bold;
+      text-align: right;
+      margin: 20px 0;
+      color: #397d9c;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #c7dfe9;
+      border-radius: 9px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .finalizar {
+      background: #258c65;
+      color: white;
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .aviso {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #655d59;
+    }
+
+    footer {
+      background: #d9f4ff;
+      padding: 25px 15px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 450px) {
+      header h1 {
+        font-size: 34px;
+      }
+
+      main {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>✈️ DoceVoo</h1>
+    <p>☁️ Cada doce, um passo rumo ao céu! 🍫</p>
+  </header>
+
+  <nav>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#carrinho">Carrinho 🛒</a>
+  </nav>
+
+  <main>
+    <section class="intro">
+      <h2>Bem-vindo a bordo! 💙</h2>
+      <p>
+        Docinhos preparados com carinho para deixar seu dia mais doce.
+        Escolha seus favoritos e monte seu pedido!
+      </p>
+    </section>
+
+    <section id="cardapio">
+      <h2>🍫 Nosso cardápio</h2>
+
+      <div class="produtos">
+        <article class="produto">
+          <div class="emoji">🍫</div>
+          <h3>Brigadeiro Tradicional</h3>
+          <p>O clássico que todo mundo ama!</p>
+          <p class="preco">R$ 5,00</p>
+          <button class="adicionar" onclick="adicionar(0)">
+            Adicionar ao carrinho
+          </button>
+        </article>
+
+        <article class="produto">
+          <div class="emoji">🥛</div>
+          <h3>Brigadeiro de Ninho</h3>
+          <p>Cremoso e cheio de sabor.</p>
+          <p class="preco">R$ 6,00</p>
+          <button class="adicionar" onclick="adicionar(1)">
+            Adicionar ao carrinho
+          </button>
+        </article>
+
+        <article class="produto">
+          <div class="emoji">🍪</div>
+          <h3>Brigadeiro de Oreo</h3>
+          <p>Uma combinação deliciosa!</p>
+          <p class="preco">R$ 6,00</p>
+          <button class="adicionar" onclick="adicionar(2)">
+            Adicionar ao carrinho
+          </button>
+        </article>
+
+        <article class="produto">
+          <div class="emoji">🍫</div>
+          <h3>Sonho de Valsa</h3>
+          <p>Um bombom delicioso para adoçar seu dia!</p>
+          <p class="preco">R$ 2,00</p>
+          <button class="adicionar" onclick="adicionar(3)">
+            Adicionar ao carrinho
+          </button>
+        </article>
+
+        <article class="produto">
+          <div class="emoji">🤍</div>
+          <h3>Ouro Branco</h3>
+          <p>Uma delícia crocante de chocolate!</p>
+          <p class="preco">R$ 2,00</p>
+          <button class="adicionar" onclick="adicionar(4)">
+            Adicionar ao carrinho
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section id="carrinho">
+      <h2>🛒 Seu carrinho</h2>
+      <div class="carrinho">
+        <div id="itens">
+          <p>Seu carrinho está vazio. Escolha um docinho! 🍬</p>
+        </div>
+
+        <div class="total" id="total">Total: R$ 0,00</div>
+
+        <div class="pedido">
+          <h3>📋 Dados do pedido</h3>
+
+          <label for="nome">Seu nome</label>
+          <input id="nome" type="text" placeholder="Como você se chama?">
+
+          <label for="observacoes">Observações</label>
+          <textarea id="observacoes"
+            placeholder="Ex.: quero combinar a entrega..."></textarea>
+
+          <button class="finalizar" onclick="finalizar()">
+            Preparar pedido pelo Instagram 📲
+          </button>
+
+          <p class="aviso">
+            O pedido será preparado como mensagem. Você precisará conferir
+            a disponibilidade e enviar a mensagem pelo Instagram.
+            O pedido não é enviado automaticamente.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>✈️ DoceVoo 💙</h3>
+    <p>Cada doce, um passo rumo ao céu!</p>
+    <p>Feito com carinho 🍫☁️</p>
+  </footer>
+
+  <script>
+    const produtos = [
+      { nome: "Brigadeiro Tradicional", preco: 5.00 },
+      { nome: "Brigadeiro de Ninho", preco: 6.00 },
+      { nome: "Brigadeiro de Oreo", preco: 6.00 },
+      { nome: "Sonho de Valsa", preco: 2.00 },
+      { nome: "Ouro Branco", preco: 2.00 }
+    ];
+
+    const carrinho = [0, 0, 0, 0, 0];
+
+    function dinheiro(valor) {
+      return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function adicionar(indice) {
+      carrinho[indice]++;
+      atualizar();
+    }
+
+    function alterar(indice, valor) {
+      carrinho[indice] = Math.max(0, carrinho[indice] + valor);
+      atualizar();
+    }
+
+    function atualizar() {
+      const itens = document.getElementById("itens");
+      let total = 0;
+      let html = "";
+
+      produtos.forEach((produto, indice) => {
+        const quantidade = carrinho[indice];
+
+        if (quantidade > 0) {
+          const subtotal = quantidade * produto.preco;
+          total += subtotal;
+
+          html += `
+            <div class="linha-carrinho">
+              <div>
+                <strong>${produto.nome}</strong><br>
+                ${dinheiro(subtotal)}
+              </div>
+              <div class="quantidade">
+                <button onclick="alterar(${indice}, -1)"
+                  aria-label="Diminuir quantidade">−</button>
+                <strong>${quantidade}</strong>
+                <button onclick="alterar(${indice}, 1)"
+                  aria-label="Aumentar quantidade">+</button>
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      itens.innerHTML = html ||
+        "<p>Seu carrinho está vazio. Escolha um docinho! 🍬</p>";
+
+      document.getElementById("total").textContent =
+        "Total: " + dinheiro(total);
+    }
+
+    function finalizar() {
+      let total = 0;
+      let linhas = [];
+
+      produtos.forEach((produto, indice) => {
+        const quantidade = carrinho[indice];
+
+        if (quantidade > 0) {
+          const subtotal = quantidade * produto.preco;
+          total += subtotal;
+          linhas.push(
+            `${quantidade}x ${produto.nome} - ${dinheiro(subtotal)}`
+          );
+        }
+      });
+
+      if (linhas.length === 0) {
+        alert("Adicione pelo menos um doce ao carrinho! 🍫");
+        return;
+      }
+
+      const nome = document.getElementById("nome").value.trim();
+      const observacoes =
+        document.getElementById("observacoes").value.trim();
+
+      if (!nome) {
+        alert("Digite seu nome para preparar o pedido.");
+        document.getElementById("nome").focus();
+        return;
+      }
+
+      let mensagem =
+        `✈️🍫 PEDIDO — DOCEVOO\n\n` +
+        `Nome: ${nome}\n\n` +
+        `${linhas.join("\n")}\n\n` +
+        `Total: ${dinheiro(total)}\n`;
+
+      if (observacoes) {
+        mensagem += `\nObservações: ${observacoes}\n`;
+      }
+
+      mensagem += "\nOlá! Gostaria de confirmar a disponibilidade desse pedido. 💙";
+
+      // Copia o resumo para facilitar o envio manual.
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(mensagem).catch(() => {});
+      }
+
+      // Troque pelo nome público da conta, sem o símbolo @.
+      const INSTAGRAM_USERNAME = "docevoo1";
+
+      if (INSTAGRAM_USERNAME === "docevoo1") {
+        alert(
+          "Seu pedido foi preparado!\n\n" + mensagem +
+          "\n\nCopie o resumo e configure o usuário do Instagram no código."
+        );
+        return;
+      }
+
+      alert(
+        "Se o resumo não for copiado automaticamente, copie-o manualmente. " +
+        "Depois, cole a mensagem no Direct do Instagram."
+      );
+
+      window.open(
+        "https://www.instagram.com/" + INSTAGRAM_USERNAME + "/",
+        "_blank"
+      );
+    }
+  </script>
+</body>
+</html>
